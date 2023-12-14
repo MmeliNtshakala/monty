@@ -1,24 +1,24 @@
-#ifndef _MONTY_H_
-#define _MONTY_H_
+#ifndef MAIN_H_
+#define MAIN_H_
 #define _POSIX_C_SOURCE 200809L
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <ctype.h>
 #include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <sys/types.h>
+#include <fcntl.h>
 
 /**
- * struct global_s- Global vars
- * @arg: argument
- * @file: file pointer
- * @line: lines
+ * struct global_s - Global variables
+ * @arg: The current argument
+ * @file: File pointer
+ * @line: Line buffer
  * @n: data
  *
- * Description: structures here hold gloval variables
+ * Description: Structure to hold global variables used in the program
  */
-
 typedef struct global_s
 {
 	char *arg;
@@ -26,6 +26,7 @@ typedef struct global_s
 	char *line;
 	int n;
 } global_t;
+
 extern global_t global;
 
 /**
@@ -39,9 +40,9 @@ extern global_t global;
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -54,12 +55,30 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void push(stack_t **head, unsigned int line_number);
-void pall(stack_t **head, unsigned int line_number);
-void pint(stack_t **head, unsigned int line_number);
-int _isdigit(char *x)
+void f_push(stack_t **head, unsigned int line_number);
+void f_pall(stack_t **head, unsigned int line_number);
+void f_pint(stack_t **head, unsigned int line_number);
+void f_pop(stack_t **head, unsigned int line_number);
+void f_swap(stack_t **head, unsigned int line_number);
+void f_add(stack_t **head, unsigned int line_number);
+void f_sub(stack_t **head, unsigned int line_number);
+void f_div(stack_t **head, unsigned int line_number);
+void f_mul(stack_t **head, unsigned int line_number);
+void f_mod(stack_t **head, unsigned int line_number);
+void f_nop(stack_t **head, unsigned int line_number);
+void f_pchar(stack_t **head, unsigned int line_number);
+void f_pstr(stack_t **head, unsigned int line_number);
+void f_rotl(stack_t **head, unsigned int line_number);
+void f_rotr(stack_t **head, unsigned int line_number);
+
+void exec_op(char *opcode, stack_t **stack, unsigned int line_number);
+void call_op(stack_t **stack);
+void free_stack(stack_t *stack);
+
+int _isdigit(char *c);
+
 #endif
