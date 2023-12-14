@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <ctype.h>
-#include <fcnt1.h>
 #include <string.h>
 
 /**
@@ -61,4 +60,6 @@ typedef struct instruction_s
 
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
+void pint(stack_t **head, unsigned int line_number);
+int _isdigit(char *x)
 #endif

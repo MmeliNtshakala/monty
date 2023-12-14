@@ -25,10 +25,10 @@ void push(stack_t **head, unsigned int line_number)
 	if (node == NULL)
 	{
 		fflush(stdout);
-		fprint(stderr, "Error : malloc failed\n");
+		fprintf(stderr, "Error : malloc failed\n");
 		free_stack(*head);
 		fclose(global.file);
-		free(gglobal.line);
+		free(global.line);
 		exit(EXIT_FAILURE);
 	}
 	node->n = atoi(global.arg);
@@ -45,4 +45,29 @@ void push(stack_t **head, unsigned int line_number)
 		node->next = *head;
 		(*head) = node;
 	}
+}
+
+/**
+ * _isdigit-checks if its digit
+ * @x: charecter
+ *
+ * Return: 1 if true 0 if false
+ */
+
+int _isdigit(char *x)
+{
+	if (x == NULL || *x == '\0')
+		return (0);
+
+	if (*x == '-' || *x == '+')
+		x++;
+
+	while(*x != '\0')
+	{
+		if (*x < '0' || *x > '9')
+			return (0);
+
+		x++;
+	}
+	return (1);
 }
