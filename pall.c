@@ -1,21 +1,22 @@
 #include "monty.h"
 
 /**
- * pall- print all values in stack
- * @head: pinte to hear
- * line_number: Line number in bytecode file
- * Return: void
+ * f_pall - Print all values in the stack
+ * @head: Pointer to the head of the stack
+ * @line_number: Line number in the bytecode file
+ *
+ * Return: void.
  */
-
-void pall(stack_t **head, unsigned int line_number)
+void f_pall(stack_t **head, unsigned int line_number)
 {
 	stack_t *node;
-	node = *head;
 
+	node = *head;
 	while (node != NULL)
 	{
 		printf("%d\n", node->n);
 		node = node->next;
 	}
+
 	(void)line_number;
 }
